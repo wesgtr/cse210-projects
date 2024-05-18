@@ -2,7 +2,7 @@ using System;
 
 public class Journal
 {
-    private List<Entry> entries = new List<Entry>();
+    private List<Entry> _entries = new List<Entry>();
 
     public void AddEntry()
     {
@@ -40,21 +40,73 @@ public class Journal
         string location = Console.ReadLine();
 
         Entry newEntry = new Entry(prompt, response, location);
-        entries.Add(newEntry);
+        _entries.Add(newEntry);
     }
 
     public void DisplayEntries()
     {
-        foreach (Entry entry in entries)
+        foreach (Entry entry in _entries)
         {
-            Console.WriteLine($"Date: {entry.Date}, Time: {entry.Time}, Prompt: {entry.Prompt}, Response: {entry.Response}, Location: {entry.Location}");
+            Console.WriteLine(entry);
         }
     }
 
-    public List<Entry> GetEntries() => entries;
-
-    public void SetEntries(List<Entry> newEntries)
+    private void EnsureFileWithHeader(string filename)
     {
-        entries = newEntries;
+        if (!File.Exists(filename))
+        {
+            using (StreamWriter outputFile = new StreamWriter(filename))
+            {
+                outputFile.WriteLine("Date;Time;Prompt;Response;Location");
+            }
+        }
+    }
+
+    public void SaveJournalToFile(string filename)
+    {
+        EnsureFileWithHeader(filename);
+        using (StreamWriter outputFile = new StreamWriter(filename, true))
+        {
+            foreach (Entry entry in _entries)
+            {
+                if (!entry.IsSaved)
+                {
+                    outputFile.WriteLine(entry.ToString());
+                    entry.IsSaved = true;
+                }
+            }
+        }
+    }
+
+     public void LoadJournalFromFile(string filename)
+    {
+        _entries.Clear();
+        if (File.Exists(filename))
+        {
+            string[] lines = File.ReadAllLines(filename);
+            bool isFirstLine = true;
+            foreach (string line in lines)
+            {
+                if (isFirstLine)
+                {
+                    isFirstLine = false;
+                    continue;
+                }
+                try
+                {
+                    Entry loadedEntry = Entry.FromString(line);
+                    loadedEntry.IsSaved = true;
+                    _entries.Add(loadedEntry);
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine($"Skipped invalid entry: {line}. Error: {ex.Message}");
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine($"File {filename} not found.");
+        }
     }
 }
