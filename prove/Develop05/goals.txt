@@ -1,0 +1,2 @@
+50
+SimpleGoal,goal to test the project,test if is working properly,50,True
