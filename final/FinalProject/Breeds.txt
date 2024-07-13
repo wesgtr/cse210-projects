@@ -1,0 +1,5 @@
+Holstein,30,0.2
+Jersey,25,0.15
+Guernsey,28,0.18
+Ayrshire,26,0.17
+Brown Swiss,27,0.16
