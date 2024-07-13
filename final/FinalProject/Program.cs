@@ -49,12 +49,12 @@ class Program
                     Console.WriteLine($"{j + 1}. {breeds[j].Name}");
                 }
                 bool isValidBreed = int.TryParse(Console.ReadLine(), out breedChoice);
-                breedChoice--; // Adjust for zero-based index
+                breedChoice--;
 
                 if (!isValidBreed || breedChoice < 0 || breedChoice >= breeds.Count)
                 {
                     Console.WriteLine("Invalid choice. Please choose a valid breed.");
-                    breedChoice = -1; // Reset breedChoice to continue the loop
+                    breedChoice = -1;
                 }
             }
 
