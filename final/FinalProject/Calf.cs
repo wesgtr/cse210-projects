@@ -11,6 +11,6 @@ public class Calf
 
     public void CalculateReplacementStatus()
     {
-        ReplacementStatus = Age < 2; // Exemplo: bezerros com menos de 2 anos são considerados para reposição
+        ReplacementStatus = Age < 2;
     }
 }

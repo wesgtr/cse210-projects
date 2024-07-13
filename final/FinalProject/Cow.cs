@@ -16,6 +16,6 @@ public class Cow
 
     public bool NeedsReplacement()
     {
-        return _age >= 5; // Exemplo: substituir vacas com 5 anos ou mais
+        return _age >= 5;
     }
 }

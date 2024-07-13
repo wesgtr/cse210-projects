@@ -32,7 +32,7 @@ public class Paddock
         return CurrentCowCount >= Capacity;
     }
 
-    public void DisplayStatus() // Certificar-se que este método é público
+    public void DisplayStatus()
     {
         Console.WriteLine($"Paddock {ID}: {CurrentCowCount}/{Capacity} cows");
     }

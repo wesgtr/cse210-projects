@@ -1,11 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
-
 public class Farm
 {
     public List<Cow> Cows { get; private set; }
     public List<Calf> Calves { get; private set; }
-    public List<Paddock> Paddocks { get; set; } // Alterado para permitir set externo
+    public List<Paddock> Paddocks { get; set; }
 
     public Farm(List<Cow> cows)
     {
