@@ -2,22 +2,22 @@ namespace FarmManagement
 {
     public class Farm
     {
-        private List<Animal> animals;
+        private List<Animal> _animals;
 
         public Farm()
         {
-            animals = new List<Animal>();
+            _animals = new List<Animal>();
         }
 
         public void AddAnimal(Animal animal)
         {
-            animals.Add(animal);
+            _animals.Add(animal);
         }
 
         public double CalculateTotalSpace()
         {
             double totalSpace = 0;
-            foreach (var animal in animals)
+            foreach (var animal in _animals)
             {
                 totalSpace += animal.CalculateRequiredSpace();
             }

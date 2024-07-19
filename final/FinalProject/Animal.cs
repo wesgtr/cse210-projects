@@ -2,21 +2,21 @@ namespace FarmManagement
 {
     public abstract class Animal
     {
-        private int quantity;
+        private int _quantity;
 
         public Animal(int quantity)
         {
-            this.quantity = quantity;
+            _quantity = quantity;
         }
 
         public int GetQuantity()
         {
-            return quantity;
+            return _quantity;
         }
 
         public void SetQuantity(int quantity)
         {
-            this.quantity = quantity;
+            _quantity = quantity;
         }
 
         public abstract double CalculateRequiredSpace();

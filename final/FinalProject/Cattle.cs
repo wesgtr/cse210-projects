@@ -3,21 +3,21 @@ namespace FarmManagement
     public class Cattle : Animal
     {
         private const double CattlePerHectare = 6.0;
-        private string breed;
+        private string _breed;
 
         public Cattle(int quantity, string breed) : base(quantity)
         {
-            this.breed = breed;
+            _breed = breed;
         }
 
         public string GetBreed()
         {
-            return breed;
+            return _breed;
         }
 
         public void SetBreed(string breed)
         {
-            this.breed = breed;
+            _breed = breed;
         }
 
         public override double CalculateRequiredSpace()

@@ -2,22 +2,22 @@ namespace FarmManagement
 {
     public class ReplacementCalculation
     {
-        private const double ReplacementRate = 0.2;
-        private int quantity;
+        private const double ReplacementRate = 0.2; // Fixed replacement rate of 20%
+        private int _quantity;
 
         public ReplacementCalculation(int quantity)
         {
-            this.quantity = quantity;
+            _quantity = quantity;
         }
 
         public int CalculateReplacementHeifers()
         {
-            return (int)Math.Ceiling(quantity * ReplacementRate);
+            return (int)Math.Ceiling(_quantity * ReplacementRate);
         }
 
         public int GetQuantity()
         {
-            return quantity;
+            return _quantity;
         }
     }
 }
