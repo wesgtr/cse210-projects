@@ -1,0 +1,4 @@
+1 Holstein 25.0
+2 Jersey 20.0
+3 Guernsey 22.0
+4 Ayrshire 18.0

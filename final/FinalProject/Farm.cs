@@ -1,29 +1,44 @@
-public class Farm
+namespace FarmManagement
 {
-    public List<Cow> Cows { get; private set; }
-    public List<Calf> Calves { get; private set; }
-    public List<Paddock> Paddocks { get; set; }
-
-    public Farm(List<Cow> cows)
+    public class Farm
     {
-        Cows = cows;
-        Calves = new List<Calf>();
-        Paddocks = new List<Paddock>();
-    }
+        private List<Animal> animals;
 
-    public double CalculateTotalMilkProduction()
-    {
-        return Cows.Sum(cow => cow.CalculateDailyMilkProduction());
-    }
+        public Farm()
+        {
+            animals = new List<Animal>();
+        }
 
-    public int DetermineReplacementNeeds()
-    {
-        return Cows.Count(cow => cow.NeedsReplacement());
-    }
+        public void AddAnimal(Animal animal)
+        {
+            animals.Add(animal);
+        }
 
-    public void AllocatePaddocks()
-    {
-        PaddockAllocator allocator = new PaddockAllocator();
-        allocator.AllocatePaddocks(this);
+        public double CalculateTotalSpace()
+        {
+            double totalSpace = 0;
+            foreach (var animal in animals)
+            {
+                totalSpace += animal.CalculateRequiredSpace();
+            }
+            return Math.Round(totalSpace, 2);
+        }
+
+        public Dictionary<int, (string, double)> LoadBreeds(string filePath)
+        {
+            var breeds = new Dictionary<int, (string, double)>();
+            foreach (var line in File.ReadAllLines(filePath))
+            {
+                var parts = line.Split(' ');
+                if (parts.Length == 3)
+                {
+                    int id = int.Parse(parts[0]);
+                    var breed = parts[1];
+                    var milkProduction = double.Parse(parts[2]);
+                    breeds.Add(id, (breed, milkProduction));
+                }
+            }
+            return breeds;
+        }
     }
 }
